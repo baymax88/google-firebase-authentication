@@ -4,7 +4,7 @@ auth.onAuthStateChanged(user => {
     db.collection('guides').onSnapshot(snapshot => {
       setupGuides(snapshot.docs)
       setupUI(user)
-    });
+    }, err => console.log(err.message));
   } else {
     setupUI()
     setupGuides([])
