@@ -1,9 +1,13 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
   if (user) {
-    
+    db.collection('guides').get().then(snapshot => {
+      setupGuides(snapshot.docs)
+    });
+  } else {
+    setupGuides([])
   }
-})
+});
 
 // signup
 const signupForm = document.querySelector('#signup-form');
